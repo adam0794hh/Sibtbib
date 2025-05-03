@@ -7,6 +7,8 @@ import about_image from './about_image.png'
 import logo from './logo.svg'
 import dropdown_icon from './dropdown_icon.svg'
 import menu_icon from './menu_icon.svg'
+import mail_icon from './mail_icon.svg'
+import lock_icon from './lock_icon.svg'
 import cross_icon from './cross_icon.png'
 import chats_icon from './chats_icon.svg'
 import verified_icon from './verified_icon.svg'
@@ -43,6 +45,7 @@ export const assets = {
     header_img,
     group_profiles,
     logo,
+    mail_icon,
     chats_icon,
     verified_icon,
     info_icon,
@@ -51,6 +54,7 @@ export const assets = {
     contact_image,
     about_image,
     menu_icon,
+    lock_icon,
     cross_icon,
     dropdown_icon,
     upload_icon,

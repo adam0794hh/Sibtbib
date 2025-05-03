@@ -38,6 +38,26 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "0000000000"
     },
+    verifyOtp : {
+        type: String,
+        default: ''
+    },
+    verifyOtpExpireAt : {
+        type: Number,
+        default: 0
+    },
+    isAccountVerified : {
+        type: Boolean,
+        default: false
+    },
+    resetOtp : {
+        type: String,
+        default: ''
+    },
+    resetOtpExpireAt : {
+        type: Number,
+        default: 0
+    },
 });
 
 const userModel = mongoose.models.user || mongoose.model("user",userSchema);

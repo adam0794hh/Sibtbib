@@ -77,6 +77,9 @@ const Login = () => {
         <div className='w-full'>
           <p>Mot de passe</p>
           <input className='border border-zinc-300 rounded w-full p-2 mt-1' type="password" autoComplete="current-password" onChange={(e) => setPassword(e.target.value)} value={password} required />
+          {
+            state === 'Login' && <p><span onClick={() => navigate('/reset-password')} className='text-primary underline cursor-pointer'>Réinitialiser votre mot de passe?</span></p>
+          }
         </div>
 
         <button type='submit' className='bg-primary text-white w-full py-2 rounded-md text-base'>{state === 'Sign Up' ? "Créer un Compte" : "Connexion"}</button>
