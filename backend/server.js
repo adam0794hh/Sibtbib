@@ -19,7 +19,7 @@ const allowedOrigins = [
     "http://localhost:5173",
     "http://localhost:5174",
     "https://sibtbib-frontend.vercel.app",
-    "https://tonfrontend2.com"
+    "https://sibtbib-admin.vercel.app"
 ];
 
 app.use(cors({
