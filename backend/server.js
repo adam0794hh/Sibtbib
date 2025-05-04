@@ -18,7 +18,7 @@ app.use(express.json());
 const allowedOrigins = [
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://tonfrontend1.com",
+    "https://sibtbib-frontend.vercel.app",
     "https://tonfrontend2.com"
 ];
 
