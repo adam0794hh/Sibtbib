@@ -46,10 +46,16 @@ const registerUser = async (req, res) => {
         res.json({ success: true, token });
 
     } catch (error) {
+        // 🛑 Erreur MongoDB : email déjà utilisé
+        if (error.code === 11000 && error.keyPattern?.email) {
+            return res.json({ success: false, message: "Cette adresse e-mail est déjà utilisée." });
+        }
+
         console.log(error);
-        res.json({ success: false, message: error.message });
+        res.json({ success: false, message: "Une erreur est survenue." });
     }
 };
+
 
 
 // API to User login
