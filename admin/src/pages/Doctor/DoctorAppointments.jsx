@@ -86,7 +86,7 @@ const DoctorAppointments = () => {
 
             <p className="text-sm text-gray-600 mb-4">
               Tu es sur le point d’annuler le rendez-vous avec{" "}
-              <span className="font-semibold">{appointmentToCancel.docData.name}</span>{" "}
+              <span className="font-semibold">{appointmentToCancel.userData.name}</span>{" "}
               le {slotDateFormat(appointmentToCancel.slotDate)}.
             </p>
 
