@@ -10,10 +10,24 @@ const MyAppointments = () => {
   const [appointments, setAppointments] = useState([])
   const months = ["", "Jan", "Fev", "Mar", "Avr", "Mai", "Jui", "juil", "Aou", "Sep", "Oct", "Nove", "Dec"]
 
+  const [appointmentToCancel, setAppointmentToCancel] = useState(null)
+  const [cancelling, setCancelling] = useState(false)
 
   const slotDateFormat = (slotDate) => {
     const dateArray = slotDate.split('-')
     return dateArray[0] + " " + months[Number(dateArray[1])] + " " + dateArray[2]
+  }
+
+  const confirmCancelAppointment = async () => {
+    if (!appointmentToCancel) return
+
+    try {
+      setCancelling(true)
+      await cancelAppointments(appointmentToCancel._id)
+    } finally {
+      setCancelling(false)
+      setAppointmentToCancel(null)
+    }
   }
 
 
@@ -95,7 +109,9 @@ const MyAppointments = () => {
                 ) : (
                   // Sinon, afficher le bouton pour annuler le rendez-vous
                   <button
-                    onClick={() => cancelAppointments(item._id)}
+                    onClick={() => {
+                      setAppointmentToCancel(item);
+                    }}
                     className="text-sm sm:text-stone-500 text-center sm:min-w-48 py-2 px-2 border rounded transition-all duration-300 hover:bg-red-600 hover:text-white sm:hover:bg-red-600 sm:hover:text-white bg-red-600 text-white sm:bg-transparent mb-2 sm:mb-0"
                   >
                     Annuler le rendez-vous
@@ -106,6 +122,38 @@ const MyAppointments = () => {
           ))
         }
       </div>
+      {appointmentToCancel && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 w-[90%] max-w-md shadow-lg">
+
+            <h2 className="text-lg font-semibold mb-2">Annuler le rendez-vous</h2>
+
+            <p className="text-sm text-gray-600 mb-4">
+              Tu es sur le point d’annuler le rendez-vous avec{" "}
+              <span className="font-semibold">{appointmentToCancel.docData.name}</span>{" "}
+              le {slotDateFormat(appointmentToCancel.slotDate)}.
+            </p>
+
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setAppointmentToCancel(null)}
+                className="px-4 py-2 rounded-lg border text-gray-600 hover:bg-gray-100"
+                disabled={cancelling}
+              >
+                Garder
+              </button>
+
+              <button
+                onClick={confirmCancelAppointment}
+                className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 disabled:opacity-50"
+                disabled={cancelling}
+              >
+                {cancelling ? "Annulation..." : "Annuler le RDV"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
