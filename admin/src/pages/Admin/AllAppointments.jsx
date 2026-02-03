@@ -64,7 +64,6 @@ const AllAppointments = () => {
                   ? <p className='text-green-500 text-xs font-medium'>Terminé</p>
                   : <img
                     onClick={() => {
-                      console.log("OPEN MODAL");
                       setAppointmentToCancel(item);
                     }}
                     className='w-10 cursor-pointer'

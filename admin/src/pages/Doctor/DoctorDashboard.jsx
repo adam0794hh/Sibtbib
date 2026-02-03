@@ -81,7 +81,6 @@ const DoctorDashboard = () => {
                     : <div className='flex'>
                       <img
                         onClick={() => {
-                          console.log("OPEN MODAL");
                           setAppointmentToCancel(item);
                         }}
                         className='w-10 cursor-pointer'
